@@ -1,3 +1,4 @@
+
 // Je gaat functies schrijven die we kunnen hergebruiken om sommige emailadressen te checken. Nu zul je gaan merken hoe handig functies kunnen zijn!
 // Je zult hier methoden van het String Object voor nodig hebben, dus pak de paragraaf op EdHub over het String Object er even bij.
 
@@ -10,7 +11,27 @@
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
 
+function getEmailDomain(emailAdres) {
+    const place = emailAdres.lastIndexOf("@");
+    return emailAdres.substring(place)
 
+}
+const domein = [
+    getEmailDomain("n.eeken@novi-education.nl"),
+    getEmailDomain("t.mellink@novi.nl"),
+    getEmailDomain("a.wiersma@outlook.com"),
+]
+
+
+console.log(domein)
+
+
+
+
+//
+// const gezegde = "n.eeken@novi-education.nl"
+// gezegde.split("@");
+// console.log(gezegde.split("@"))
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -20,6 +41,43 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+// function typeOfMail(email) {
+//     return email
+// }
+// const typeOfMailArray = [
+// typeOfMail("n.eeken@novi-education.nl"),
+// typeOfMail("t.mellink@novi.nl"),
+// typeOfMail("novi.nlaapjesk@outlook.com"),
+// typeOfMail("a.wiersma@outlook.com"),
+// ]
+// if (typeOfMailArray.includes("education"))  {
+//     console.log("student")
+// }
+// if (typeOfMailArray.includes("Novi")) {
+//     console.log("")
+// } else {
+//     console.log("Extern")
+// }
+
+function typeOfMail(email) {
+    let trueMail = email
+    if (trueMail.includes("education")){
+        console.log("student")
+
+    } else if (trueMail.includes("outlook")) {
+        console.log("Extern")
+
+    } else {
+        console.log("Medewerker")
+    }
+}
+
+
+typeOfMail("n.eeken@novi-education.nl")
+typeOfMail("t.mellink@novi.nl")
+typeOfMail("novi.nlaapjesk@outlook.com")
+typeOfMail("a.wiersma@outlook.com")
+typeOfMail("rmb1312@outlook.com")
 
 
 /* Opdracht  3 */
@@ -34,3 +92,12 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(emailAdres) {
+
+}
+checkEmailValidity("n.eeken@novi.nl")
+checkEmailValidity("tessmellink@novi.nl")
+checkEmailValidity("n.eekenanovi.nl")
+checkEmailValidity("tessmellink@novi,nl")
+
