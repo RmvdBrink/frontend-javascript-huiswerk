@@ -10,28 +10,33 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+//function aangeroepen en parameter emailAdres mee gegeven.
+// Const variable aan maken om email in op te slaan met .lastIndexOf hier doe je het index nummer mee opslaan van
+// het laatst voorkomende teken wat je zoekt in de string in dit geval @.
+//Dan return je die uitkomst + nog een keer emailAdres.substring(place) in die place zit nog ent index nummer van @
+// en met substring zeg je dan alles wat na @ komt moet terug geven worden.
+// dan logt die allen de domeinnamen in terminal
 
 function getEmailDomain(emailAdres) {
     const place = emailAdres.lastIndexOf("@");
     return emailAdres.substring(place)
 
 }
-const domein = [
-    getEmailDomain("n.eeken@novi-education.nl"),
-    getEmailDomain("t.mellink@novi.nl"),
-    getEmailDomain("a.wiersma@outlook.com"),
-]
+//Mijn eigen manier die een array in een keer logt.
+// const domein = [
+//     getEmailDomain("n.eeken@novi-education.nl"),
+//     getEmailDomain("t.mellink@novi.nl"),
+//     getEmailDomain("a.wiersma@outlook.com"),
+// ]
+// console.log(domein)
 
 
-console.log(domein)
+console.log(getEmailDomain("n.eeken@novi-education.nl"))
+console.log(getEmailDomain("t.mellink@novi.nl"))
+console.log(getEmailDomain("a.wiersma@outlook.com"))
 
 
 
-
-//
-// const gezegde = "n.eeken@novi-education.nl"
-// gezegde.split("@");
-// console.log(gezegde.split("@"))
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -60,26 +65,29 @@ console.log(domein)
 // }
 
 function typeOfMail(email) {
-    let trueMail = email
-    if (trueMail.includes("education")){
-        console.log("student")
 
-    } else if (trueMail.includes("outlook")) {
-        console.log("Extern")
+    if (email.includes("education.nl")){
+
+        return "student";
+    } else if (email.includes("novi.nl")) {
+        return  "Medewerker";
 
     } else {
-        console.log("Medewerker")
+       return  "Extern";
     }
 }
+// const employees = typeOfMail()
+// console.log(employees)
 
 
-typeOfMail("n.eeken@novi-education.nl")
-typeOfMail("t.mellink@novi.nl")
-typeOfMail("novi.nlaapjesk@outlook.com")
-typeOfMail("a.wiersma@outlook.com")
-typeOfMail("rmb1312@outlook.com")
+console.log(typeOfMail("n.eeken@novi-education.nl"));
+console.log(typeOfMail("t.mellink@novi.nl"));
+console.log(typeOfMail("novi.nlaapjesk@outlook.com"));
+console.log(typeOfMail("a.wiersma@outlook.com"))
+console.log(typeOfMail("rmb1312@outlook.com"))
+console.log(typeOfMail("rick.vanbrink@novi-education.nl"))
 
-
+// console.log(typeOfMail())
 /* Opdracht  3 */
 // Schrijf een functie genaamd checkEmailValidity, die een emailadres verwacht en checkt of het emailadres valide is. De functie returned true of false, afhankelijk van de uitkomst.
 // Een emailadres is valide wanneer:
@@ -93,11 +101,36 @@ typeOfMail("rmb1312@outlook.com")
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
 
-function checkEmailValidity(emailAdres) {
-
+function checkEmailValidity(email) {
+    return !!(email.includes("@") && (email.charAt(email.length - 1) !== '.') && !(email.includes(",")));
 }
-checkEmailValidity("n.eeken@novi.nl")
-checkEmailValidity("tessmellink@novi.nl")
-checkEmailValidity("n.eekenanovi.nl")
-checkEmailValidity("tessmellink@novi,nl")
 
+console.log(checkEmailValidity("n.eeken@novi.nl"));
+console.log(checkEmailValidity("tessmellink@novi.nl"))
+console.log(checkEmailValidity("n.eekenanovi.nl"))
+console.log(checkEmailValidity("n.eeken@novinl."))
+console.log(checkEmailValidity("tessmellink@novi,nl"))
+
+
+console.log("2e manier")
+function checkEmailValidity2(email) {
+    const emailIncludesA = email.includes("@");
+    const emailIncludesB = email.lastIndexOf( ".");
+    const emailIncludesD = email.includes(",");
+    switch (true) {
+        case (emailIncludesA === false):
+    return false;
+        case (emailIncludesD === true):
+            return false;
+        case (emailIncludesB === email.length -1):
+            return false;
+        default:
+                return true;
+    }
+}
+
+console.log(checkEmailValidity2("n.eeken@novi.nl"));
+console.log(checkEmailValidity2("tessmellink@novi.nl"));
+console.log(checkEmailValidity2("n.eekenanovi.nl"));
+console.log(checkEmailValidity2("n.eeken@novinl."));
+console.log(checkEmailValidity2("tessmellink@novi,nl"));
